@@ -27,6 +27,13 @@ let updatePage = function(){
         }
         
     }
+    if(guessCount == 0) {
+        document.getElementById("result").textContent = "You Lose";
+    } else if(clueString.indexOf("_") == -1) {
+        document.getElementById("result").textContent = "You Win!";
+    }
+
+    
 
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
@@ -37,7 +44,10 @@ let updatePage = function(){
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`; //update image to the right image every time instead of doing the concat
 }
-
+// in update page, if guessCount == 0, show "you lose" and show "you win" if word is fully guessed (if else)
+// have something that keeps track if user lost or won to not allow the user to guess in guessLetter (if else)
+// dont allow guesses before a word is chosen could be in the same if else statement for above
+// dont allow guess to previously guessed letters 2x can be in update page
 let guessLetter = function(){
     let input = document.getElementById("guess");
     let letter = input.value;
