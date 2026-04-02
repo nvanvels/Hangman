@@ -18,6 +18,7 @@ let newGame = function(){
 }
 let updatePage = function(){
     let clueString = "";
+    if(word != "") { // doesnt allow guessing before the game starts
     for(let i =0;i< word.length;i++) {
         var currentLetter = word.charAt(i);
         if(guesses.indexOf(currentLetter) >=0){
@@ -26,7 +27,7 @@ let updatePage = function(){
         else{
             clueString += "_ ";
         }
-        
+        } 
     }
     if(guessCount == 0) {
         document.getElementById("result").textContent = "You Lose";
@@ -51,7 +52,7 @@ let updatePage = function(){
 // dont allow guess to previously guessed letters 2x can be in update page
 let guessLetter = function(){
     if(guessCount > 0 &&
-         document.getElementById("clue").textContent.indexOf("_") != -1) { //wrapped guessLetter in if statement to prevent guess button from working after game is over
+         document.getElementById("clue").textContent.indexOf("_") != -1) { // if statement to prevent guess button from working after game is over
   
     let input = document.getElementById("guess");
     let letter = input.value;
@@ -64,5 +65,5 @@ let guessLetter = function(){
 
 
     updatePage();
-}
+    }
 }
