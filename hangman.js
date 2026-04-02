@@ -48,7 +48,6 @@ let updatePage = function(){
     image.src = `images/hangman${guessCount}.gif`; //update image to the right image every time instead of doing the concat
 }
 
-// dont allow guesses before a word is chosen could be in the same if else statement for above
 // dont allow guess to previously guessed letters 2x can be in update page
 let guessLetter = function(){
     if(guessCount > 0 &&
@@ -60,6 +59,12 @@ let guessLetter = function(){
     if(word.indexOf(letter) < 0) { //if the letter is not there, then the user lost a guess
         guessCount--;
     }
+
+    if(guesses.indexOf(letter) >= 0) {
+        alert("Letter was already guessed."); // prevents previously guessed letters from being guessed again and clears box
+        input.value = "";
+    }
+
     guesses += letter;
     input.value = ""; //Guess box is cleared after every guess
 
